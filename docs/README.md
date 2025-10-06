@@ -1,1 +1,0 @@
-# Design notes, papers read, roadmap

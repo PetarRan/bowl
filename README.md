@@ -1,13 +1,91 @@
+# <img src="docs/assets/bowl.png" alt="Bowl" width='200px'>
 
-# <img src="docs/assets/bowl.avif" alt="Bowl" width="25" height="25"> bowl
-
-bowl is a lightweight, open source web browser. A single vessel for the web.
+A minimal, hackable browser for developers. Zero UI by default. Everything through an overlay. Built for speed and customization.
 
 > **philosophy**
-- light as air
-- hackable and open source
-- overlay-driven (a clean distraction-free webview with a Steam inspired overlay for navigation)
-- cross-platform, macos/linux
+
+- light as air (<5MB, <30MB RAM)
+- hackable and open source (MIT)
+- overlay-driven (Steam-inspired, Cmd+B to access everything)
+- terminal-friendly (`bowl <url>`)
+- plugin-powered (vim mode, ad blocker, or build your own)
+- cross-platform (macOS first, Linux coming)
+
+## quick start
+
+```bash
+cd macos
+./build.sh && ./install.sh
+
+# Launch
+bowl
+bowl https://github.com
+bowl "search query"
+```
+
+Press **Cmd+B** to open the overlay.
+
+## features
+
+- **Zero chrome** - Just a webview. No toolbars, no clutter.
+- **Bowl overlay** - All controls in one place (Cmd+B) accessible all the time
+- **CLI launcher** - `bowl <url>` from terminal
+- **Plugin system** - JavaScript plugins with API access
+- **Privacy-first** - No telemetry, local-first
+- **Fast** - <200ms startup, minimal memory
+
+## plugins
+
+Built-in examples:
+
+- **vim-mode** - Navigate with j/k/h/l
+- **ad-blocker** - Remove ads automatically
+
+Create your own:
+
+```javascript
+// ~/.bowl/plugins/my-plugin/plugin.js
+window.bowl.notify("Hello from my plugin!");
+```
+
+See `examples/plugins/README.md` for API docs.
+
+## documentation
+
+- [Quick Start](docs/QUICKSTART.md) - Get up and running
+- [Build Instructions](macos/BUILD.md) - Compile from source
+- [Architecture](docs/ARCHITECTURE.md) - How Bowl works
+- [Roadmap](docs/ROADMAP.md) - What's coming next
+- [Plugin Guide](examples/plugins/README.md) - Create plugins
+
+## why bowl?
+
+**For the ones who want:**
+
+- A browser that gets out of the way
+- Full control via plugins and config
+- Terminal integration
+- No bloat, no tracking
+- Source code they can understand and modify
+
+**Coming soon:**
+
+- Local LLM integration (chat with pages, summarize, explain code)
+- Linux support
+- Session management
+- More plugins
 
 ## license
+
 MIT — Bowl is meant to be shared, hacked, and reshaped.
+
+## contributing
+
+Bowl is in early development. Want to help?
+
+- Try it and report bugs
+- Build plugins
+- Improve documentation
+- Check `docs/ROADMAP.md` for ideas
+
+Let's build a browser that respects developers. 🍜
