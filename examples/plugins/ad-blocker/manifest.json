@@ -1,0 +1,9 @@
+{
+  "name": "ad-blocker",
+  "version": "0.1.0",
+  "description": "Simple ad blocker for Bowl browser",
+  "author": "Bowl Contributors",
+  "main": "plugin.js",
+  "hooks": ["onPageLoad"],
+  "permissions": ["dom"]
+}

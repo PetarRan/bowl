@@ -1,0 +1,9 @@
+{
+  "name": "vim-mode",
+  "version": "0.1.0",
+  "description": "Vim keybindings for Bowl browser navigation",
+  "author": "Bowl Contributors",
+  "main": "plugin.js",
+  "hooks": ["onKeyPress", "onPageLoad"],
+  "permissions": ["navigation"]
+}

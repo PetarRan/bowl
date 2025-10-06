@@ -1,0 +1,39 @@
+# Bowl Browser Configuration
+# Location: ~/.bowl/config.toml
+
+[general]
+homepage = "about:blank"
+search_engine = "duckduckgo"  # duckduckgo, google, brave
+user_agent = "default"  # or custom string
+
+[appearance]
+overlay_opacity = 0.85
+overlay_blur = true
+theme = "dark"  # dark, light, auto
+
+[keybindings]
+toggle_overlay = "Cmd+B"
+new_tab = "Cmd+T"
+close_tab = "Cmd+W"
+reload = "Cmd+R"
+dev_tools = "Cmd+Alt+I"
+
+[plugins]
+enabled = ["vim-mode", "ad-blocker"]
+auto_update = false
+
+[privacy]
+do_not_track = true
+block_third_party_cookies = true
+clear_on_exit = false
+
+[performance]
+tab_hibernation = true
+tab_hibernation_timeout = 300  # seconds
+preload_next_page = false
+hardware_acceleration = true
+
+[developer]
+enable_console_logs = true
+plugin_dev_mode = false  # hot reload plugins
+remote_debugging = false
