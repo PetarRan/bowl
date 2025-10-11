@@ -5,6 +5,7 @@ struct OverlayView: View {
     @Binding var isVisible: Bool
     @State private var searchText: String = ""
     @FocusState private var isSearchFocused: Bool
+    @State private var showWelcome: Bool = !UserDefaults.standard.bool(forKey: "hasSeenWelcome")
 
     private func setupEscapeHandler() {
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
@@ -24,12 +25,29 @@ struct OverlayView: View {
             Color.black.opacity(0.85)
                 .ignoresSafeArea()
                 .onTapGesture {
-                    withAnimation {
-                        isVisible = false
+                    if !showWelcome {
+                        withAnimation {
+                            isVisible = false
+                        }
                     }
                 }
 
-            VStack(spacing: 20) {
+            if showWelcome {
+                WelcomeView(isVisible: $showWelcome)
+            } else {
+                mainOverlayContent
+            }
+        }
+        .onAppear {
+            if !showWelcome {
+                isSearchFocused = true
+            }
+            setupEscapeHandler()
+        }
+    }
+
+    private var mainOverlayContent: some View {
+        VStack(spacing: 20) {
                 // Header
                 if let logoPath = Bundle.main.path(forResource: "bowl", ofType: "png"),
                    let nsImage = NSImage(contentsOfFile: logoPath) {
@@ -132,10 +150,88 @@ struct OverlayView: View {
                     .padding(.top, 8)
             }
             .padding(40)
+    }
+}
+
+struct WelcomeView: View {
+    @Binding var isVisible: Bool
+
+    var body: some View {
+        VStack(spacing: 30) {
+            Text("Welcome to Bowl")
+                .font(.system(size: 42, weight: .thin))
+                .foregroundColor(.white)
+
+            Text("A minimal browser for developers")
+                .font(.system(size: 18))
+                .foregroundColor(.white.opacity(0.8))
+
+            Divider()
+                .background(Color.white.opacity(0.3))
+                .frame(maxWidth: 400)
+                .padding(.vertical, 10)
+
+            VStack(alignment: .leading, spacing: 12) {
+                ShortcutRow(key: "Cmd+B", description: "Toggle overlay")
+                ShortcutRow(key: "Cmd+T", description: "New tab")
+                ShortcutRow(key: "Cmd+N", description: "New window")
+            }
+            .frame(maxWidth: 400)
+
+            VStack(spacing: 8) {
+                Text("From terminal:")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.white.opacity(0.7))
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("bowl <url>          # Open URL")
+                    Text("bowl \"search\"        # Search web")
+                    Text("bowl .               # Open git repo")
+                }
+                .font(.system(size: 12, design: .monospaced))
+                .foregroundColor(.white.opacity(0.6))
+            }
+            .padding(.top, 10)
+
+            Button(action: {
+                UserDefaults.standard.set(true, forKey: "hasSeenWelcome")
+                withAnimation {
+                    isVisible = false
+                }
+            }) {
+                Text("Get Started")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(width: 200, height: 44)
+                    .background(Color.white.opacity(0.2))
+                    .cornerRadius(8)
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 20)
         }
-        .onAppear {
-            isSearchFocused = true
-            setupEscapeHandler()
+        .padding(60)
+    }
+}
+
+struct ShortcutRow: View {
+    let key: String
+    let description: String
+
+    var body: some View {
+        HStack {
+            Text(key)
+                .font(.system(size: 14, design: .monospaced))
+                .foregroundColor(.white)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.white.opacity(0.15))
+                .cornerRadius(6)
+
+            Text(description)
+                .font(.system(size: 14))
+                .foregroundColor(.white.opacity(0.8))
+
+            Spacer()
         }
     }
 }

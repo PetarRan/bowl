@@ -27,6 +27,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Hide menu bar for minimal look
         NSApp.setActivationPolicy(.regular)
 
+        // Create default config if needed
+        BowlConfig.createDefaultConfig()
+
         // Check if launched with URL argument
         if CommandLine.arguments.count > 1 {
             let url = CommandLine.arguments[1]
@@ -40,8 +43,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func openNewWindow() {
+        let config = BowlConfig.load()
         let newWindow = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 1200, height: 800),
+            contentRect: NSRect(x: 0, y: 0, width: config.windowWidth, height: config.windowHeight),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered,
             defer: false

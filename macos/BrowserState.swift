@@ -7,9 +7,10 @@ class BrowserState: ObservableObject {
     @Published var activeTabIndex: Int = 0
 
     weak var webView: WKWebView?
+    private lazy var config: BowlConfig = BowlConfig.load()
 
     init() {
-        // Ideally we would start with no tabs, but WKWebView needs an initial URL to load
+        // Start with a blank tab
         tabs.append(Tab(url: "about:blank", title: "New Tab"))
 
         // Load initial URL if provided via command line
@@ -27,8 +28,17 @@ class BrowserState: ObservableObject {
             if urlString.contains(".") {
                 finalURL = "https://\(urlString)"
             } else {
-                // Treat as search query (use DuckDuckGo by default)
-                finalURL = "https://duckduckgo.com/?q=\(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString)"
+                // Treat as search query using configured search engine
+                let encodedQuery = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString
+                let searchEngine = config.searchEngine
+
+                // Handle search engine properly - check if it's a full URL or just a name
+                if searchEngine.hasPrefix("http://") || searchEngine.hasPrefix("https://") {
+                    finalURL = "\(searchEngine)\(encodedQuery)"
+                } else {
+                    // Default to DuckDuckGo if not a valid URL
+                    finalURL = "https://duckduckgo.com/?q=\(encodedQuery)"
+                }
             }
         }
 

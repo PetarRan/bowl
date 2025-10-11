@@ -26,6 +26,7 @@ swiftc -O \
     -framework WebKit \
     -framework AppKit \
     BowlApp.swift \
+    Config.swift \
     ContentView.swift \
     BrowserState.swift \
     BrowserView.swift \
@@ -52,12 +53,12 @@ fi
 # Create PkgInfo
 echo "APPL????" > "$CONTENTS_DIR/PkgInfo"
 
-echo "🔨 Building Bowl CLI..."
+echo ">>>> Building Bowl CLI..."
 
 # Build CLI
 swift build -c release
 
-echo ">>>> Build complete!"
+echo ">>>>> Build complete!"
 echo ""
 echo "App location: $APP_DIR"
 echo "CLI location: .build/release/bowl-cli"
