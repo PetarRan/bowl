@@ -20,7 +20,7 @@ struct BrowserView: NSViewRepresentable {
         state.webView = webView
 
         // Load initial URL if provided
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             if self.state.currentURL != "about:blank" {
                 self.state.navigate(to: self.state.currentURL)
             }

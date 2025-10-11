@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🏗️  Building Bowl Browser..."
+echo "> Building Bowl Browser..."
 
 # Create app bundle structure
 APP_NAME="Bowl"
@@ -16,7 +16,7 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$MACOS_DIR"
 mkdir -p "$RESOURCES_DIR"
 
-echo "📦 Compiling Swift sources..."
+echo ">> Compiling Swift sources..."
 
 # Compile all Swift files into the app binary
 swiftc -O \
@@ -34,7 +34,7 @@ swiftc -O \
     ../core/PluginAPI.swift \
     -o "$MACOS_DIR/$APP_NAME"
 
-echo "📝 Creating Info.plist..."
+echo ">>> Creating Info.plist..."
 
 # Copy Info.plist
 cp Info.plist "$CONTENTS_DIR/"
@@ -57,9 +57,9 @@ echo "🔨 Building Bowl CLI..."
 # Build CLI
 swift build -c release
 
-echo "✅ Build complete!"
+echo ">>>> Build complete!"
 echo ""
 echo "App location: $APP_DIR"
 echo "CLI location: .build/release/bowl-cli"
 echo ""
-echo "To install, run: ./install.sh"
+echo "-> To install, run: ./install.sh"

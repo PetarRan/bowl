@@ -9,7 +9,7 @@ class BrowserState: ObservableObject {
     weak var webView: WKWebView?
 
     init() {
-        // Start with one blank tab
+        // Ideally we would start with no tabs, but WKWebView needs an initial URL to load
         tabs.append(Tab(url: "about:blank", title: "New Tab"))
 
         // Load initial URL if provided via command line
