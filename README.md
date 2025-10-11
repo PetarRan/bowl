@@ -18,12 +18,16 @@ cd macos
 ./build.sh && ./install.sh
 
 # Launch
-bowl
-bowl https://github.com
-bowl "search query"
+bowl                    # Opens with overlay
+bowl https://github.com # Opens URL directly
+bowl "search query"     # Search DuckDuckGo
+bowl .                  # Opens current git repo
 ```
 
-Press **Cmd+B** to open the overlay.
+**Keyboard shortcuts:**
+- `Cmd+B` - Toggle overlay
+- `Cmd+T` - New tab
+- `Cmd+N` - New window
 
 ## features
 
@@ -55,7 +59,6 @@ See `examples/plugins/README.md` for API docs.
 - [Quick Start](docs/QUICKSTART.md) - Get up and running
 - [Build Instructions](macos/BUILD.md) - Compile from source
 - [Architecture](docs/ARCHITECTURE.md) - How Bowl works
-- [Roadmap](docs/ROADMAP.md) - What's coming next
 - [Plugin Guide](examples/plugins/README.md) - Create plugins
 
 ## why bowl?
@@ -85,7 +88,6 @@ Bowl is in early development. Want to help?
 
 - Try it and report bugs
 - Build plugins
-- Improve documentation
-- Check `docs/ROADMAP.md` for ideas
+- Submit PRs
 
 Let's build a browser that respects developers. 🍜

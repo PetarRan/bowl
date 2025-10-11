@@ -100,21 +100,10 @@ window.addEventListener("bowl:storageResponse", (e) => {
 
 ## Example Plugins
 
-### Vim Mode
+Check the `examples/plugins/` directory:
 
-Navigate with vim keybindings (j/k/h/l)
-
-### Ad Blocker
-
-Remove common ad elements from pages
-
-### Dark Mode
-
-Force dark mode on all websites
-
-### Custom Search
-
-Add custom search engine shortcuts
+- **vim-mode** - Navigate with vim keybindings (j/k/h/l)
+- **ad-blocker** - Remove common ad elements from pages
 
 ## Installing Plugins
 
