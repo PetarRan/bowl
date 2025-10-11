@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "Bowl",
-    platforms: [.macOS(.v13)],
+    platforms: [.macOS(.v14)],
     products: [
         .executable(name: "bowl-cli", targets: ["BowlCLI"])
     ],

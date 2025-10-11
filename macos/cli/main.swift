@@ -24,7 +24,7 @@ func main() {
 
     if let app = bowlApp {
         // Bowl is already running, activate it
-        app.activate(options: .activateIgnoringOtherApps)
+        app.activate()
 
         // If URL provided, send it to the running instance
         if let url = urlToOpen {

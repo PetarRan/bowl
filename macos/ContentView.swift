@@ -10,7 +10,7 @@ struct ContentView: View {
             // The browser view - completely chrome-less
             BrowserView(state: browserState)
                 .ignoresSafeArea()
-                .padding(.top, 3)  
+                .padding(.top, 3)  // Small padding to prevent window controls overlapping content  
 
             // Steam-inspired overlay
             if showOverlay {

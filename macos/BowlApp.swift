@@ -79,6 +79,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension Notification.Name {
     static let loadURL = Notification.Name("loadURL")
-    static let toggleOverlay = Notification.Name("toggleOverlay")
-    static let newWindow = Notification.Name("newWindow")
 }

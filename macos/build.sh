@@ -31,9 +31,9 @@ swiftc -O \
     BrowserState.swift \
     BrowserView.swift \
     OverlayView.swift \
-    ../core/PluginManager.swift \
-    ../core/PluginAPI.swift \
     -o "$MACOS_DIR/$APP_NAME"
+    # Note: Plugin system (PluginManager.swift, PluginAPI.swift) not wired up yet
+    # Will integrate properly in v0.2.0 - examples exist for reference
 
 echo ">>> Creating Info.plist..."
 
